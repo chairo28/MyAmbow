@@ -85,6 +85,20 @@
       cursor: pointer;
     }
 
+    #typewriterText {
+      font-size: 1.2em;
+      margin-top: 20px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #relationshipTime {
+      margin-top: 20px;
+      font-style: italic;
+      color: #444;
+    }
+
     @media (max-width: 600px) {
       .carousel img {
         width: 90%;
@@ -104,7 +118,7 @@
     <div id="anniversaryCountdown"></div>
   </div>
 
-  <!-- Open Button (appears when countdown ends) -->
+  <!-- Open Button -->
   <button class="open-button" id="openButton" onclick="revealMessage()">Open 💖</button>
 
   <!-- Hidden Content -->
@@ -112,9 +126,16 @@
     <h2>Happy 6th Anniversary, My Love 💝</h2>
     <p>Since July 28, 2019, every moment with you has been magical.</p>
 
+    <!-- Typewriter Effect -->
+    <p id="typewriterText"></p>
+
+    <!-- Relationship Counter -->
+    <p id="relationshipTime"></p>
+
+    <!-- Photo Carousel -->
     <div class="carousel">
       <img id="carouselImage" src="1.jpg" alt="Memory photo" />
-      <p id="carouselMessage">The start of our beautiful journey ❤️</p>
+      <p id="carouselMessage">I’m not a church boy, never claimed to be. But God knew I’d need someone like her a compass, not a crutch. And through her, I’m learning that faith can look like love in motion.</p>
       <button class="next-button" onclick="nextSlide()">➡️ Next</button>
     </div>
   </div>
@@ -125,8 +146,8 @@
       { img: "2.jpg", message: "She’s beauty, heart, and faith. I’m just trying to keep up. And for that, I’ll spend a lifetime trying to deserve her." },
       { img: "3.jpg", message: "Everything changed when I met her. Not overnight. Not perfectly. But piece by piece, she showed me there’s more to life than just surviving." },
       { img: "4.jpg", message: "She might not see it. But she’s the strong one. The loyal one. And I’m the one who gets to be proud of her every day." },
-      { img: "5.jpg", message: "She’s the kind of silly that makes heavy days feel light. Like a sunrise in the middle of a storm." },
-      { img: "6.jpg", message: "When things got dark, she didn’t walk away. She stood next to me, cheered me on, reminded me who I was." },
+      { img: "5.jpg", message: "She’s the kind of silly that makes heavy days feel light. Like a sunrise in the middle of a storm" },
+      { img: "6.jpg", message: "When things got dark, she didn’t walk away. She stood next to me, cheered me on, reminded me who I was" },
       { img: "7.jpg", message: "She’s my No.1 hype woman. Makes fun of me, pushes me, laughs with me and somehow still believes in me more than I believe in myself." },
       { img: "8.jpg", message: "We’ve been through years, changes, and challenges. And we’re still here. Still choosing each other. And we’re not done yet." }
     ];
@@ -142,6 +163,9 @@
     function revealMessage() {
       document.getElementById("openButton").style.display = "none";
       document.getElementById("mainContent").style.display = "block";
+      typeWriter();
+      updateRelationshipTime();
+      setInterval(updateRelationshipTime, 1000);
     }
 
     function updateAnniversaryCountdown() {
@@ -164,6 +188,32 @@
         `${days} days, ${hours} hrs, ${minutes} mins, ${seconds} secs 💞`;
     }
 
+    // Typewriter effect
+    const text = "I never expected someone like you to walk into my life, and now I can't imagine it without you.";
+    let i = 0;
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("typewriterText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+      }
+    }
+
+    // Relationship duration
+    const startDate = new Date("July 28, 2019 00:00:00");
+    function updateRelationshipTime() {
+      const now = new Date();
+      const diff = now - startDate;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("relationshipTime").innerText =
+        `We've been together for ${days} days, ${hours} hrs, ${minutes} mins, ${seconds} secs 💖`;
+    }
+
+    // Initialize countdown
     setInterval(updateAnniversaryCountdown, 1000);
     updateAnniversaryCountdown();
   </script>
