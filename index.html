@@ -99,6 +99,14 @@
       color: #444;
     }
 
+    #finalMessage {
+      display: none;
+      font-weight: bold;
+      font-size: 1.3em;
+      color: #d6336c;
+      margin-top: 30px;
+    }
+
     @media (max-width: 600px) {
       .carousel img {
         width: 90%;
@@ -138,6 +146,11 @@
       <p id="carouselMessage">I’m not a church boy, never claimed to be. But God knew I’d need someone like her a compass, not a crutch. And through her, I’m learning that faith can look like love in motion.</p>
       <button class="next-button" onclick="nextSlide()">➡️ Next</button>
     </div>
+
+    <!-- Final Love Message -->
+    <p id="finalMessage">
+      I love you, and I will choose you every day. Please be patient sa akin -Chaidu💖
+    </p>
   </div>
 
   <script>
@@ -158,6 +171,12 @@
       currentSlide = (currentSlide + 1) % slides.length;
       document.getElementById("carouselImage").src = slides[currentSlide].img;
       document.getElementById("carouselMessage").textContent = slides[currentSlide].message;
+
+      if (currentSlide === slides.length - 1) {
+        document.getElementById("finalMessage").style.display = "block";
+      } else {
+        document.getElementById("finalMessage").style.display = "none";
+      }
     }
 
     function revealMessage() {
