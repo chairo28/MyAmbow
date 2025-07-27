@@ -2,74 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>Happy Anniversary 💖</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Anniversary, My Love</title>
   <style>
     body {
-      background: linear-gradient(to right, #ffe0e0, #fff0f5);
       font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ffe0e0, #fff0f5);
+      color: #333;
       text-align: center;
       padding: 40px;
-      color: #333;
     }
 
     h1 {
-      font-size: 3em;
+      font-size: 2.5em;
       color: #d6336c;
     }
 
-    p {
-      font-size: 1.2em;
-      margin-top: 10px;
+    .envelope {
+      width: 200px;
+      height: 140px;
+      margin: 0 auto;
+      position: relative;
+      background: #f8cdda;
+      border: 2px solid #d6336c;
+      border-radius: 8px;
+      overflow: hidden;
     }
 
-    .heart {
-      font-size: 4em;
-      color: red;
-      animation: pulse 1s infinite;
+    .envelope::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fddde6;
+      clip-path: polygon(0 0, 100% 0, 50% 60%);
+      z-index: 1;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+    #countdownWrapper {
+      margin-top: 20px;
+      font-size: 1.3em;
     }
 
-    .carousel {
-      margin-top: 50px;
-    }
-
-    .carousel img {
-      width: 300px;
-      height: auto;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      margin-bottom: 15px;
-    }
-
-    .carousel p {
-      font-size: 1.1em;
-      margin: 15px 0;
-    }
-
-    .next-button {
-      font-size: 1.2em;
-      padding: 10px 20px;
+    .open-button {
+      display: none;
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 1em;
       background-color: #d6336c;
       color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s;
     }
 
-    .next-button:hover {
+    .open-button:hover {
       background-color: #b52b5b;
-    }
-
-    .countdown {
-      font-size: 1.5em;
-      margin-top: 40px;
     }
 
     #mainContent {
@@ -77,34 +68,52 @@
       margin-top: 40px;
     }
 
-    #waitingMessage {
-      font-size: 1.3em;
-      margin-top: 40px;
+    .carousel img {
+      width: 300px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .next-button {
+      margin-top: 20px;
+      font-size: 1.1em;
+      padding: 10px 20px;
+      background-color: #d6336c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
     }
 
     @media (max-width: 600px) {
-      h1 { font-size: 2em; }
-      .heart { font-size: 3em; }
-      .carousel img { width: 90%; }
+      .carousel img {
+        width: 90%;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div id="waitingMessage">
-    <h2>Countdown to Our 6th Anniversary 🎉</h2>
+  <h1>💌 To My Love 💌</h1>
+
+  <!-- Envelope Preview -->
+  <div class="envelope" id="envelope"></div>
+
+  <div id="countdownWrapper">
+    <p>This message will unlock on our 6th anniversary 🎉</p>
     <div id="anniversaryCountdown"></div>
   </div>
 
+  <!-- Open Button (shown after countdown) -->
+  <button class="open-button" id="openButton" onclick="revealMessage()">Open 💖</button>
+
+  <!-- Hidden Content -->
   <div id="mainContent">
-    <h1>Happy 6th Anniversary, My Love 💖</h1>
-    <div class="heart">💘</div>
-    <p>Since July 28, 2019, every day with you has been a beautiful memory.</p>
-    <p>Here’s to many more years filled with love, laughter, and endless memories. ❤️</p>
+    <h2>Happy 6th Anniversary, My Love 💝</h2>
+    <p>Since July 28, 2019, every moment with you has been magical.</p>
 
     <div class="carousel">
-      <h2>Our Moments 💑</h2>
-      <img id="carouselImage" src="images/1.jpg" alt="Memory photo">
+      <img id="carouselImage" src="images/1.jpg" alt="Memory photo" />
       <p id="carouselMessage">The start of our beautiful journey ❤️</p>
       <button class="next-button" onclick="nextSlide()">➡️ Next</button>
     </div>
@@ -113,13 +122,13 @@
   <script>
     const slides = [
       { img: "images/1.jpg", message: "The start of our beautiful journey ❤️" },
-      { img: "images/2.jpg", message: "Your smile brightens even my darkest days 😊" },
-      { img: "images/3.jpg", message: "That cozy moment I never wanted to end 🥰" },
-      { img: "images/4.jpg", message: "Laughter, love, and everything in between 💫" },
-      { img: "images/5.jpg", message: "You and me against the world 🌍" },
-      { img: "images/6.jpg", message: "Every day with you is a blessing 🙏" },
-      { img: "images/7.jpg", message: "Forever grateful for your love 💖" },
-      { img: "images/8.jpg", message: "Cheers to more memories like this one 🥂" }
+      { img: "images/2.jpg", message: "You always make me smile 😊" },
+      { img: "images/3.jpg", message: "A moment I’ll always treasure 🥰" },
+      { img: "images/4.jpg", message: "Laughs and love everywhere 💫" },
+      { img: "images/5.jpg", message: "Our memories, forever in my heart 💗" },
+      { img: "images/6.jpg", message: "I feel lucky every single day 🍀" },
+      { img: "images/7.jpg", message: "Thank you for being my person 💞" },
+      { img: "images/8.jpg", message: "To many more years, my love 🥂" }
     ];
 
     let currentSlide = 0;
@@ -130,14 +139,19 @@
       document.getElementById("carouselMessage").textContent = slides[currentSlide].message;
     }
 
+    function revealMessage() {
+      document.getElementById("openButton").style.display = "none";
+      document.getElementById("mainContent").style.display = "block";
+    }
+
     function updateAnniversaryCountdown() {
       const now = new Date();
       const anniversaryDate = new Date("July 28, 2025 00:00:00");
       const diff = anniversaryDate - now;
 
       if (diff <= 0) {
-        document.getElementById("waitingMessage").style.display = "none";
-        document.getElementById("mainContent").style.display = "block";
+        document.getElementById("anniversaryCountdown").innerText = "It's time! 💌";
+        document.getElementById("openButton").style.display = "inline-block";
         return;
       }
 
@@ -146,8 +160,8 @@
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
 
-      document.getElementById("anniversaryCountdown").innerHTML =
-        `${days} days, ${hours} hrs, ${minutes} mins, ${seconds} secs to go 💞`;
+      document.getElementById("anniversaryCountdown").innerText =
+        `${days} days, ${hours} hrs, ${minutes} mins, ${seconds} secs 💞`;
     }
 
     setInterval(updateAnniversaryCountdown, 1000);
