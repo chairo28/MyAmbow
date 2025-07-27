@@ -1,1 +1,150 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Anniversary, My Love</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #ffe0e0, #fff0f5);
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 40px;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #d6336c;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+
+    .heart {
+      font-size: 4em;
+      color: red;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .carousel {
+      margin-top: 50px;
+    }
+
+    .carousel img {
+      width: 300px;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      margin-bottom: 15px;
+    }
+
+    .carousel p {
+      font-size: 1.1em;
+      margin: 15px 0;
+    }
+
+    .next-button {
+      font-size: 1.2em;
+      padding: 10px 20px;
+      background-color: #d6336c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .next-button:hover {
+      background-color: #b52b5b;
+    }
+
+    .countdown {
+      margin-top: 40px;
+      font-size: 1.5em;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2em; }
+      .heart { font-size: 3em; }
+      .carousel img { width: 90%; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Happy 6th Anniversary, My Love 💖</h1>
+  <div class="heart">💘</div>
+  <p>Since July 28, 2019, every day with you has been a beautiful memory.</p>
+  <p>Here’s to many more years filled with love, laughter, and endless memories. ❤️</p>
+
+  <div class="carousel">
+    <h2>Our Moments 💑</h2>
+    <img id="carouselImage" src="1.jpg" alt="Memory photo">
+    <p id="carouselMessage">The start of our beautiful journey ❤️</p>
+    <button class="next-button" onclick="nextSlide()">➡️ Next</button>
+  </div>
+
+  <div class="countdown">
+    <h2>Countdown to Our 7th Anniversary 🎉</h2>
+    <div id="anniversaryCountdown"></div>
+  </div>
+
+  <script>
+    const slides = [
+      { img: "1.jpg", message: "The start of our beautiful journey ❤️" },
+      { img: "2.jpg", message: "Your smile brightens even my darkest days 😊" },
+      { img: "3.jpg", message: "That cozy moment I never wanted to end 🥰" },
+      { img: "4.jpg", message: "Laughter, love, and everything in between 💫" },
+      { img: "5.jpg", message: "You and me against the world 🌍" },
+      { img: "6.jpg", message: "Every day with you is a blessing 🙏" },
+      { img: "7.jpg", message: "Forever grateful for your love 💖" },
+      { img: "8.jpg", message: "Cheers to more memories like this one 🥂" }
+    ];
+
+    let currentSlide = 0;
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      document.getElementById("carouselImage").src = slides[currentSlide].img;
+      document.getElementById("carouselMessage").textContent = slides[currentSlide].message;
+    }
+
+    function updateAnniversaryCountdown() {
+      const now = new Date();
+      let nextAnniversary = new Date(`July 28, ${now.getFullYear()}`);
+      if (now > nextAnniversary) {
+        nextAnniversary = new Date(`July 28, ${now.getFullYear() + 1}`);
+      }
+
+      const diff = nextAnniversary - now;
+
+      if (diff < 0) {
+        document.getElementById("anniversaryCountdown").innerHTML = "Happy Anniversary!!! 🎉";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("anniversaryCountdown").innerHTML =
+        `${days} days, ${hours} hrs, ${minutes} mins, ${seconds} secs to go 💞`;
+    }
+
+    setInterval(updateAnniversaryCountdown, 1000);
+    updateAnniversaryCountdown();
+  </script>
+
+</body>
+</html>
