@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,8 +68,18 @@
     }
 
     .countdown {
-      margin-top: 40px;
       font-size: 1.5em;
+      margin-top: 40px;
+    }
+
+    #mainContent {
+      display: none;
+      margin-top: 40px;
+    }
+
+    #waitingMessage {
+      font-size: 1.3em;
+      margin-top: 40px;
     }
 
     @media (max-width: 600px) {
@@ -82,33 +91,35 @@
 </head>
 <body>
 
-  <h1>Happy 6th Anniversary, My Love 💖</h1>
-  <div class="heart">💘</div>
-  <p>Since July 28, 2019, every day with you has been a beautiful memory.</p>
-  <p>Here’s to many more years filled with love, laughter, and endless memories. ❤️</p>
-
-  <div class="carousel">
-    <h2>Our Moments 💑</h2>
-    <img id="carouselImage" src="1.jpg" alt="Memory photo">
-    <p id="carouselMessage">The start of our beautiful journey ❤️</p>
-    <button class="next-button" onclick="nextSlide()">➡️ Next</button>
+  <div id="waitingMessage">
+    <h2>Countdown to Our 6th Anniversary 🎉</h2>
+    <div id="anniversaryCountdown"></div>
   </div>
 
-  <div class="countdown">
-    <h2>Countdown to Our 7th Anniversary 🎉</h2>
-    <div id="anniversaryCountdown"></div>
+  <div id="mainContent">
+    <h1>Happy 6th Anniversary, My Love 💖</h1>
+    <div class="heart">💘</div>
+    <p>Since July 28, 2019, every day with you has been a beautiful memory.</p>
+    <p>Here’s to many more years filled with love, laughter, and endless memories. ❤️</p>
+
+    <div class="carousel">
+      <h2>Our Moments 💑</h2>
+      <img id="carouselImage" src="images/1.jpg" alt="Memory photo">
+      <p id="carouselMessage">The start of our beautiful journey ❤️</p>
+      <button class="next-button" onclick="nextSlide()">➡️ Next</button>
+    </div>
   </div>
 
   <script>
     const slides = [
-      { img: "1.jpg", message: "The start of our beautiful journey ❤️" },
-      { img: "2.jpg", message: "Your smile brightens even my darkest days 😊" },
-      { img: "3.jpg", message: "That cozy moment I never wanted to end 🥰" },
-      { img: "4.jpg", message: "Laughter, love, and everything in between 💫" },
-      { img: "5.jpg", message: "You and me against the world 🌍" },
-      { img: "6.jpg", message: "Every day with you is a blessing 🙏" },
-      { img: "7.jpg", message: "Forever grateful for your love 💖" },
-      { img: "8.jpg", message: "Cheers to more memories like this one 🥂" }
+      { img: "images/1.jpg", message: "The start of our beautiful journey ❤️" },
+      { img: "images/2.jpg", message: "Your smile brightens even my darkest days 😊" },
+      { img: "images/3.jpg", message: "That cozy moment I never wanted to end 🥰" },
+      { img: "images/4.jpg", message: "Laughter, love, and everything in between 💫" },
+      { img: "images/5.jpg", message: "You and me against the world 🌍" },
+      { img: "images/6.jpg", message: "Every day with you is a blessing 🙏" },
+      { img: "images/7.jpg", message: "Forever grateful for your love 💖" },
+      { img: "images/8.jpg", message: "Cheers to more memories like this one 🥂" }
     ];
 
     let currentSlide = 0;
@@ -121,15 +132,12 @@
 
     function updateAnniversaryCountdown() {
       const now = new Date();
-      let nextAnniversary = new Date(`July 28, ${now.getFullYear()}`);
-      if (now > nextAnniversary) {
-        nextAnniversary = new Date(`July 28, ${now.getFullYear() + 1}`);
-      }
+      const anniversaryDate = new Date("July 28, 2025 00:00:00");
+      const diff = anniversaryDate - now;
 
-      const diff = nextAnniversary - now;
-
-      if (diff < 0) {
-        document.getElementById("anniversaryCountdown").innerHTML = "Happy Anniversary!!! 🎉";
+      if (diff <= 0) {
+        document.getElementById("waitingMessage").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
         return;
       }
 
